@@ -3,17 +3,24 @@ import time
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+
+
 
 if __name__ == '__main__':
 
-    PATH = "chromedriver.exe"  # Location of the webdriver file
-    driver = webdriver.Chrome(PATH)
+    driver = webdriver.Chrome()
     driver.implicitly_wait(15)
     driver.get('https://web.whatsapp.com')
     groupName = input("Enter name of group: ")
     driver.find_element_by_css_selector("span[title='" + groupName + "']").click()
-    time.sleep(4)
+
+    WebDriverWait(driver, 6).until(ec.text_to_be_present_in_element
+                                   ((By.XPATH, '//*[@id="main"]/header/div[2]/div[2]/span'), ','))
     n = len(driver.find_element_by_xpath('//*[@id="main"]/header/div[2]/div[2]/span').text.split(',')) - 1
+
     print("participants", n + 1)
 
     inputStringAt = "@"
