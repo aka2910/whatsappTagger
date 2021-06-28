@@ -8,7 +8,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 
 
-
 if __name__ == '__main__':
 
     driver = webdriver.Chrome()
@@ -35,9 +34,9 @@ if __name__ == '__main__':
     newLineAction.perform()
     inputTextElement.send_keys(inputStringAt)
 
-    driver.implicitly_wait(15)
-    elementList = driver.find_elements_by_class_name("_2zNFv")
-    driver.implicitly_wait(15)
+    # driver.implicitly_wait(15)
+    # elementList = driver.find_elements_by_class_name("_2zNFv")
+    # driver.implicitly_wait(15)
     start_time = time.time()
     for i in range(n):
         ActionChains(driver).send_keys(Keys.DOWN * i).send_keys(Keys.ENTER).perform()
